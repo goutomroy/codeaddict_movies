@@ -1,4 +1,3 @@
-
 from djet import assertions
 from model_bakery import baker
 from rest_framework import status
