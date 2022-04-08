@@ -9,7 +9,13 @@ django-filter==21.1
 django-dry-rest-permissions==1.2.0  # https://github.com/FJNR-inc/dry-rest-permissions
 
 
+# Authentication and authorization
+djangorestframework-simplejwt==4.8.0
+djoser==2.1.0
+
+
 # tests, coverage
+djet==0.3.0
 model-bakery==1.5.0
 coverage==6.3.2
 
