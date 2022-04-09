@@ -41,8 +41,9 @@ class UserAPITestCase(
         data = {"email": user.email, "password": user.raw_password}
         response = self.client.post(self._login_url, data)
         self.assert_status_equal(response, status.HTTP_200_OK)
+        self.assertCountEqual(response.data.keys(), ["access", "refresh"])
 
-    def test_get_me_success(self):
+    def test_get_me_with_jwt_token(self):
         user = self._create_user()
         data = {"email": user.email, "password": user.raw_password}
         response = self.client.post(self._login_url, data)

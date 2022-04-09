@@ -6,12 +6,12 @@ django-extensions==3.1.5
 # djangorestframework
 djangorestframework==3.13.1
 django-filter==21.1
-django-dry-rest-permissions==1.2.0  # https://github.com/FJNR-inc/dry-rest-permissions
 
 
 # Authentication and authorization
 djangorestframework-simplejwt==4.8.0
 djoser==2.1.0
+django-dry-rest-permissions==1.2.0  # https://github.com/FJNR-inc/dry-rest-permissions
 
 
 # tests, coverage
@@ -23,7 +23,7 @@ coverage==6.3.2
 # dependency and safety checker
 safety==1.10.3
 insecure-package==0.1.0
-graphviz==0.19.1
+graphviz==0.19.2
 pipdeptree==2.2.1
 
 
