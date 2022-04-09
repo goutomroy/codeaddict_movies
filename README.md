@@ -16,8 +16,11 @@
 
 * As an administrator, I would like to have access to a build-in, simple Django administration panel where I can manage users, films, and tickets
 
+### Tech Stack
+I have used `python 3.9` and `sqlite` as database to keep everything simple for now.
 
-### Steps to run project
+### Steps to run the project
+* `pip install -r requirements.txt`
 * `python manage.py migrate`
 * `python manage.py runserver`
 
