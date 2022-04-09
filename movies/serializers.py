@@ -12,6 +12,9 @@ class MovieSerializer(serializers.ModelSerializer):
 
 
 class MovieTicketSerializer(serializers.ModelSerializer):
+
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = MovieTicket
         fields = ("id", "movie", "user", "created", "updated")
@@ -27,3 +30,8 @@ class MovieTicketSerializer(serializers.ModelSerializer):
                 _("All the tickets have been sold already!")
             )
         return value
+
+    def to_representation(self, instance):
+        data = super(MovieTicketSerializer, self).to_representation(instance)
+        data["movie"] = MovieSerializer(instance.movie).data
+        return data

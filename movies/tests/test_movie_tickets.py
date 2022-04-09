@@ -16,14 +16,14 @@ class MovieTicketAPITestCase(APITestCase):
 
     def test_purchase_ticket_successful(self):
         movie = baker.make(Movie)
-        data = {"movie": movie.id, "user": self._user.id}
+        data = {"movie": movie.id}
         response = self._client.post(self._movie_ticket_list_url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_one_user_can_purchase_only_one_ticket_of_a_movie(self):
         movie = baker.make(Movie)
         baker.make(MovieTicket, movie=movie, user=self._user)
-        data = {"movie": movie.id, "user": self._user.id}
+        data = {"movie": movie.id}
         response = self._client.post(self._movie_ticket_list_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -31,9 +31,8 @@ class MovieTicketAPITestCase(APITestCase):
         movie = baker.make(Movie, number_of_tickets=1)
         baker.make(MovieTicket, movie=movie, user=self._user)
 
-        another_user = baker.make(User)
-        self._client.force_authenticate(another_user)
-        data = {"movie": movie.id, "user": another_user.id}
+        self._client.force_authenticate(baker.make(User))
+        data = {"movie": movie.id}
         response = self._client.post(self._movie_ticket_list_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -45,8 +44,8 @@ class MovieTicketAPITestCase(APITestCase):
 
         response = self._client.get(self._movie_ticket_list_url)
         self.assertCountEqual(
-            [movie_1.id, movie_2.id],
-            [each["movie"] for each in response.data["results"]],
+            [str(movie_1.id), str(movie_2.id)],
+            [movie_ticket["movie"]["id"] for movie_ticket in response.data["results"]],
         )
 
     def test_non_owner_cant_get_others_list_of_tickets(self):
