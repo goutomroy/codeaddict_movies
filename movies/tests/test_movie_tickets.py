@@ -49,6 +49,14 @@ class MovieTicketAPITestCase(APITestCase):
             [each["movie"] for each in response.data["results"]],
         )
 
+    def test_non_owner_cant_get_others_tickets(self):
+        baker.make(MovieTicket, movie=baker.make(Movie), user=self._user)
+        baker.make(MovieTicket, movie=baker.make(Movie), user=self._user)
+
+        self._client.force_authenticate(baker.make(User))
+        response = self._client.get(self._movies_list_url)
+        self.asserEqual(len([each["movie"] for each in response.data["results"]]), 0)
+
     def test_get_a_purchased_ticket(self):
         movie_ticket = baker.make(MovieTicket, movie=baker.make(Movie), user=self._user)
         movie_detail_url = reverse(
