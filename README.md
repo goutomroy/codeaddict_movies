@@ -15,3 +15,19 @@
 * As a user, I would like to have a possibility to download a list of my purchased tickets in the past
 
 * As an administrator, I would like to have access to a build-in, simple Django administration panel where I can manage users, films, and tickets
+
+
+### Steps to run project
+* `python manage.py migrate`
+* `python manage.py runserver`
+
+### Admin
+* Create a superuser to manage users, movies, tickets in django admin. Run `python manage.py createsuperuser` in terminal.
+* Login to admin :  `http://127.0.0.1:8000/admin/`
+
+### Show available api endpoints in the project
+* Just run `python manage.py show_urls` in terminal.
+### Testing
+I have added `12 tests` to test all the specified features in task description.
+
+* `python manage.py test --keepdb`
