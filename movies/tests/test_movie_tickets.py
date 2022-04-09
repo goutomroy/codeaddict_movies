@@ -55,7 +55,7 @@ class MovieTicketAPITestCase(APITestCase):
 
         self._client.force_authenticate(baker.make(User))
         response = self._client.get(self._movies_list_url)
-        self.asserEqual(len([each["movie"] for each in response.data["results"]]), 0)
+        self.assertEqual(len([each["movie"] for each in response.data["results"]]), 0)
 
     def test_get_a_purchased_ticket(self):
         movie_ticket = baker.make(MovieTicket, movie=baker.make(Movie), user=self._user)
