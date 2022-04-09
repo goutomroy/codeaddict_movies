@@ -27,7 +27,7 @@ graphviz==0.19.2
 pipdeptree==2.2.1
 
 
-# pre-commit, linter, formatter
+# pre-commit, linter, formatter, code quality metrics
 pre_commit==2.18.1
 flake8==4.0.1
 flake8-bugbear==22.3.23
